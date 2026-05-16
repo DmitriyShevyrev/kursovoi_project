@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Каталог товаров</h1>
+
+<!-- Поиск -->
+<form method="get" class="mb-4">
+    {% if current_category %}
+        <input type="hidden" name="category" value="{{ current_category.slug }}">
+    {% endif %}
+    <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Поиск товаров..." value="{{ query|default:'' }}">
+        <button class="btn btn-primary" type="submit">Найти</button>
+    </div>
+</form>
+
+<!-- Фильтр по категориям -->
+<div class="mb-4">
+    <a href="{% url 'catalog' %}" class="btn btn-sm {% if not current_category %}btn-dark{% else %}btn-outline-dark{% endif %} me-1">
+        Все
+    </a>
+    {% for category in categories %}
+        <a href="{% url 'catalog' %}?category={{ category.slug }}"
+           class="btn btn-sm {% if current_category.slug == category.slug %}btn-dark{% else %}btn-outline-dark{% endif %} me-1">
+            {{ category.name }}
+        </a>
+    {% endfor %}
+</div>
+
+<!-- Список товаров -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in page_obj %}
+        <div class="col">
+            <div class="card h-100">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                        Нет фото
+                    </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text text-muted">{{ product.category.name }}</p>
+                    <p class="card-text fw-bold">{{ product.price }} ₽</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-outline-primary btn-sm">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-muted">Товары не найдены.</p>
+    {% endfor %}
+</div>
+
+<!-- Пагинация -->
+{% if page_obj.has_other_pages %}
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if current_category %}&category={{ current_category.slug }}{% endif %}{% if query %}&q={{ query }}{% endif %}">←</a>
+            </li>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}{% if current_category %}&category={{ current_category.slug }}{% endif %}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+            </li>
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if current_category %}&category={{ current_category.slug }}{% endif %}{% if query %}&q={{ query }}{% endif %}">→</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

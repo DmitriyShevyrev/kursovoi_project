@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Корзина</h1>
+
+{% if cart|length %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Товар</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Сумма</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            <tr>
+                <td>
+                    <a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a>
+                </td>
+                <td>{{ item.price }} ₽</td>
+                <td>
+                    <form method="post" action="{% url 'cart_update' item.product.id %}" class="d-flex align-items-center gap-1">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}"
+                            min="1" max="99" class="form-control form-control-sm" style="width: 70px;">
+                        <button class="btn btn-sm btn-outline-secondary">✓</button>
+                    </form>
+                </td>
+                <td>{{ item.total_price }} ₽</td>
+                <td>
+                    <form method="post" action="{% url 'cart_remove' item.product.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-sm btn-outline-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end fw-bold">Итого:</td>
+                <td class="fw-bold">{{ cart.get_total_price }} ₽</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="d-flex gap-2 mt-3">
+        <a href="{% url 'catalog' %}" class="btn btn-outline-secondary">← Продолжить покупки</a>
+        <form method="post" action="{% url 'cart_clear' %}">
+            {% csrf_token %}
+            <button class="btn btn-outline-danger">Очистить корзину</button>
+        </form>
+        <a href="{% url 'order_create' %}" class="btn btn-primary">Оформить заказ</a>
+    </div>
+
+{% else %}
+    <p class="text-muted">Корзина пуста.</p>
+    <a href="{% url 'catalog' %}" class="btn btn-outline-primary">Перейти в каталог</a>
+{% endif %}
+{% endblock %}
