@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Оформление заказа</h1>
+<div class="row">
+    <div class="col-md-7">
+        <h5 class="mb-3">Данные доставки</h5>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Подтвердить заказ</button>
+        </form>
+    </div>
+    <div class="col-md-5">
+        <h5 class="mb-3">Ваш заказ</h5>
+        <ul class="list-group mb-3">
+            {% for item in cart %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>{{ item.product.name }} × {{ item.quantity }}</span>
+                    <span>{{ item.total_price }} ₽</span>
+                </li>
+            {% endfor %}
+            <li class="list-group-item d-flex justify-content-between fw-bold">
+                <span>Итого</span>
+                <span>{{ cart.get_total_price }} ₽</span>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

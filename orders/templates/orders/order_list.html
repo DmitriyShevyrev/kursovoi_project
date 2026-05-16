@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Мои заказы{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Мои заказы</h1>
+
+{% if orders %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Дата</th>
+                <th>Сумма</th>
+                <th>Статус</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>#{{ order.id }}</td>
+                <td>{{ order.created|date:"d.m.Y H:i" }}</td>
+                <td>{{ order.get_total_price }} ₽</td>
+                <td><span class="badge bg-primary">{{ order.get_status_display }}</span></td>
+                <td>
+                    <a href="{% url 'order_detail' order.id %}" class="btn btn-sm btn-outline-primary">
+                        Подробнее
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="text-muted">У вас пока нет заказов.</p>
+    <a href="{% url 'catalog' %}" class="btn btn-outline-primary">Перейти в каталог</a>
+{% endif %}
+{% endblock %}
