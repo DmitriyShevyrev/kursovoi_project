@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Мой профиль{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Мой профиль</h1>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="card mb-4">
+            <div class="card-header">Личные данные</div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% for error in field.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary w-100">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header">История заказов</div>
+            <div class="card-body">
+                {% if orders %}
+                    <table class="table table-sm">
+                        <thead>
+                            <tr><th>№</th><th>Дата</th><th>Сумма</th><th>Статус</th><th></th></tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td>#{{ order.id }}</td>
+                                <td>{{ order.created|date:"d.m.Y" }}</td>
+                                <td>{{ order.get_total_price }} ₽</td>
+                                <td><span class="badge bg-primary">{{ order.get_status_display }}</span></td>
+                                <td>
+                                    <a href="{% url 'order_detail' order.id %}" class="btn btn-sm btn-outline-primary">→</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p class="text-muted">Заказов пока нет.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
