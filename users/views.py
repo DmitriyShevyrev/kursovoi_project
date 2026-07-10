@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -8,6 +10,8 @@ from orders.models import Order
 from .forms import ProfileForm
 from .models import Profile
 
+logger = logging.getLogger(__name__)
+
 
 def register_view(request):
     if request.method == 'POST':
@@ -15,6 +19,8 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            # Ни логин, ни email, ни пароль в лог не пишем — только id.
+            logger.info('Зарегистрирован пользователь: user_id=%s', user.id)
             return redirect('catalog')
     else:
         form = UserCreationForm()
@@ -27,6 +33,9 @@ def login_view(request):
         if form.is_valid():
             login(request, form.get_user())
             return redirect('catalog')
+        # Ни введённый логин, ни IP не пишем: и то, и другое — персональные
+        # данные. Подбор пароля всё равно будет виден по частоте этих строк.
+        logger.warning('Неудачная попытка входа')
     else:
         form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
