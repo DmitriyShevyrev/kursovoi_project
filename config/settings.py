@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-import os
 from pathlib import Path
+
+from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-3g0xm!e%!i5c1*a&y0tlmt5not4($mf6wz#d8-irkk+qjqz1bm')
+# Настройки читаются из файла .env (см. .env.example), который не хранится
+# в репозитории. Так секреты не попадают в историю git.
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Ключ подписи сессий и токенов. Значения по умолчанию намеренно нет:
+# без .env проект должен упасть с понятной ошибкой, а не тихо запуститься
+# на общеизвестном запасном ключе.
+SECRET_KEY = config('SECRET_KEY')
 
-ALLOWED_HOSTS = []
+# По умолчанию False: если переменную забыли задать, срабатывает
+# безопасный вариант, а не режим отладки на боевом сервере.
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+# Csv() превращает строку «127.0.0.1,localhost» в список из двух элементов.
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 
 # Application definition

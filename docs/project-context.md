@@ -40,9 +40,16 @@
 `db.sqlite3` намеренно не хранится в репозитории. Каталог разворачивается из фикстуры:
 
 ```
+copy .env.example .env
+venv\Scripts\python.exe -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+:: полученный ключ вписать в .env в переменную SECRET_KEY
+
 venv\Scripts\python.exe manage.py migrate
 venv\Scripts\python.exe manage.py loaddata catalog.json
 ```
+
+Без `.env` проект намеренно падает с ошибкой `SECRET_KEY not found`: запасного
+значения в коде нет, чтобы секрет не мог снова утечь в репозиторий.
 
 Фикстура `catalog/fixtures/catalog.json` содержит 5 категорий и 52 товара.
 Картинки к ним лежат в `media/products/` и **не игнорируются** — без них
@@ -92,9 +99,13 @@ venv\Scripts\python.exe manage.py dumpdata catalog --indent 2 > catalog\fixtures
 ## План работы по этапам
 
 **Этап 1 — Технический долг.**
-~~`.gitignore`~~, `.env` + вынос секретов (python-decouple), ~~`requirements.txt`~~,
+~~`.gitignore`~~, ~~`.env` + вынос секретов (python-decouple)~~, ~~`requirements.txt`~~,
 `README.md`. Миграция SQLite → PostgreSQL. ~~Первые тесты~~ (было 12, стало 15).
 Логирование.
+
+Старый `SECRET_KEY` лежал открытым текстом в `config/settings.py` и попал в публичную
+историю git с первых коммитов. Считается скомпрометированным: ключ заменён на новый,
+он хранится только в `.env`. Чистить историю не стали — ключ отозван, смысла нет.
 
 **Этап 2 — Функциональные доработки.**
 Модель `Review` (отзывы + рейтинг). REST API (Django REST Framework).
