@@ -53,3 +53,63 @@ class OrderTests(TestCase):
         self.client.post(f'/orders/{order.id}/cancel/')
         order.refresh_from_db()
         self.assertEqual(order.status, 'cancelled')
+
+
+class OrderLoggingTests(TestCase):
+    """Логи заказа не должны содержать персональных данных.
+
+    Требование проекта: ФИО, адреса и телефоны не покидают базу данных.
+    Лог — такое же хранилище ПДн, но его легко скопировать или закоммитить,
+    поэтому в него пишутся только идентификаторы (order_id, user_id).
+
+    assertLogs перехватывает записи логгера 'orders' во время блока with
+    и складывает их в cm.output — там мы их и проверяем.
+    """
+
+    def setUp(self):
+        self.user = User.objects.create_user(username='buyer', password='TestPass123!')
+        category = Category.objects.create(name='Тест', slug='test')
+        self.product = Product.objects.create(
+            name='Товар', slug='tovar',
+            category=category, price=500, available=True,
+        )
+        self.client.login(username='buyer', password='TestPass123!')
+
+    def test_order_log_has_ids_but_no_personal_data(self):
+        self.client.post(f'/cart/add/{self.product.id}/')
+
+        with self.assertLogs('orders', level='INFO') as cm:
+            self.client.post('/orders/create/', {
+                'first_name': 'Пётр',
+                'last_name': 'Незабудкин',
+                'address': 'г. Краснодар, ул. Секретная, д. 13',
+            })
+
+        log = '\n'.join(cm.output)
+        order = Order.objects.filter(user=self.user).first()
+
+        # Идентификаторы должны быть — иначе лог бесполезен.
+        self.assertIn(f'order_id={order.id}', log)
+        self.assertIn(f'user_id={self.user.id}', log)
+
+        # А персональных данных быть не должно.
+        for personal in ('Пётр', 'Незабудкин', 'Краснодар', 'Секретная'):
+            self.assertNotIn(personal, log)
+
+    def test_rejected_cancel_is_logged_as_warning(self):
+        # Заказ уже уехал в доставку — отменить его нельзя.
+        order = Order.objects.create(
+            user=self.user,
+            first_name='Пётр', last_name='Незабудкин',
+            address='г. Краснодар, ул. Секретная, д. 13', status='shipped',
+        )
+
+        with self.assertLogs('orders', level='WARNING') as cm:
+            self.client.post(f'/orders/{order.id}/cancel/')
+
+        order.refresh_from_db()
+        self.assertEqual(order.status, 'shipped')  # статус не изменился
+
+        log = '\n'.join(cm.output)
+        self.assertIn(f'order_id={order.id}', log)
+        self.assertNotIn('Незабудкин', log)

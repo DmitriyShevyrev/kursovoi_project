@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.dispatch import receiver
 
@@ -5,6 +7,8 @@ from catalog.models import Product
 
 from .cart import SessionCart
 from .models import Cart, CartItem
+
+logger = logging.getLogger(__name__)
 
 
 @receiver(user_logged_in)
@@ -22,6 +26,13 @@ def load_cart_on_login(sender, request, user, **kwargs):
         try:
             product = Product.objects.get(id=int(product_id), available=True)
         except Product.DoesNotExist:
+            # Товар удалили или сняли с продажи, пока корзина лежала в сессии.
+            # Позиция молча исчезает у пользователя — без этой записи причину
+            # потом не установить.
+            logger.warning(
+                'Позиция корзины пропала при входе: product_id=%s user_id=%s',
+                product_id, user.id,
+            )
             continue
         cart_item, created = CartItem.objects.get_or_create(
             cart=db_cart,
@@ -60,6 +71,10 @@ def save_cart_on_logout(sender, request, user, **kwargs):
                     id=int(product_id), available=True
                 )
             except Product.DoesNotExist:
+                logger.warning(
+                    'Позиция корзины пропала при выходе: product_id=%s user_id=%s',
+                    product_id, user.id,
+                )
                 continue
             CartItem.objects.create(
                 cart=db_cart,
@@ -68,4 +83,5 @@ def save_cart_on_logout(sender, request, user, **kwargs):
             )
         session_cart.clear()
     except Cart.DoesNotExist:
+        # У пользователя ещё не было корзины в БД — нормальная ситуация.
         pass

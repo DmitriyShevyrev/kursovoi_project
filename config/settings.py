@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-import os
 from pathlib import Path
+
+from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-3g0xm!e%!i5c1*a&y0tlmt5not4($mf6wz#d8-irkk+qjqz1bm')
+# Настройки читаются из файла .env (см. .env.example), который не хранится
+# в репозитории. Так секреты не попадают в историю git.
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Ключ подписи сессий и токенов. Значения по умолчанию намеренно нет:
+# без .env проект должен упасть с понятной ошибкой, а не тихо запуститься
+# на общеизвестном запасном ключе.
+SECRET_KEY = config('SECRET_KEY')
 
-ALLOWED_HOSTS = []
+# По умолчанию False: если переменную забыли задать, срабатывает
+# безопасный вариант, а не режим отладки на боевом сервере.
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+# Csv() превращает строку «127.0.0.1,localhost» в список из двух элементов.
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 
 # Application definition
@@ -77,10 +85,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# Параметры подключения лежат в .env: пароль не должен попадать в код.
+# Драйвер — psycopg 3, ставится как psycopg[binary].
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='127.0.0.1'),
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
 
@@ -123,3 +137,69 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# Logging
+# https://docs.djangoproject.com/en/6.0/topics/logging/
+
+# ВАЖНО: в логи не пишутся персональные данные (ФИО, адреса, телефоны).
+# Только идентификаторы: order_id=42, user_id=7. Лог — это тоже хранилище
+# ПДн, но в отличие от БД его легко случайно скопировать или закоммитить.
+# Принцип минимизации ПДн (152-ФЗ) распространяется и на него.
+
+LOGS_DIR = BASE_DIR / 'logs'
+LOGS_DIR.mkdir(exist_ok=True)  # Django сам каталог не создаёт
+
+LOGGING = {
+    'version': 1,
+    # Не выключаем встроенные логгеры Django — иначе потеряем его сообщения.
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        # Для файла: подробно, с датой и местом в коде.
+        'verbose': {
+            'format': '{asctime} {levelname:8} {name} — {message}',
+            'style': '{',
+        },
+        # Для консоли: коротко, чтобы не мешало при разработке.
+        'simple': {
+            'format': '{levelname:8} {message}',
+            'style': '{',
+        },
+    },
+
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+            # В разработке видим всё, на боевом сервере — только предупреждения.
+            'level': 'DEBUG' if DEBUG else 'WARNING',
+        },
+        'file': {
+            # Ротация: когда файл дорастает до 5 МБ, он переименовывается
+            # в django.log.1, и запись начинается заново. Храним 5 таких копий,
+            # то есть лог не может занять больше ~30 МБ.
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOGS_DIR / 'django.log',
+            'maxBytes': 5 * 1024 * 1024,
+            'backupCount': 5,
+            'formatter': 'verbose',
+            'level': 'INFO',
+            'encoding': 'utf-8',  # без этого кириллица в логе превратится в мусор
+        },
+    },
+
+    'loggers': {
+        # Сообщения самого Django: в файл пишем только проблемы.
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
+        # Наши приложения: бизнес-события уровня INFO и выше.
+        'catalog': {'handlers': ['console', 'file'], 'level': 'INFO', 'propagate': False},
+        'cart': {'handlers': ['console', 'file'], 'level': 'INFO', 'propagate': False},
+        'orders': {'handlers': ['console', 'file'], 'level': 'INFO', 'propagate': False},
+        'users': {'handlers': ['console', 'file'], 'level': 'INFO', 'propagate': False},
+    },
+}
