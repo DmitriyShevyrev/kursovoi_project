@@ -15,7 +15,7 @@
 
 - **ОС разработчика:** Windows. Все команды/пути — под Windows (PowerShell/CMD).
 - **Python 3.13, Django 6.0.4**, архитектура MTV.
-- **БД:** SQLite (разработка) → **PostgreSQL** (цель диплома).
+- **БД:** PostgreSQL 18 (драйвер psycopg 3). SQLite остался в прошлом.
 - **Фронтенд:** Django-шаблоны + Bootstrap 5 (через CDN). Без React и JS-фреймворков.
 - **AI:** `sentence-transformers` (локально, для поиска) + Gemini Flash free API
   (генеративные задачи). Всё через абстрактный слой-провайдер.
@@ -37,15 +37,33 @@
 
 ## Данные и воспроизводимость
 
-`db.sqlite3` намеренно не хранится в репозитории. Каталог разворачивается из фикстуры:
+Ни база, ни секреты в репозитории не хранятся. Разворачивание с нуля:
+
+**1. Создать роль и базу.** В pgAdmin (Query Tool) или psql — по одной команде за раз:
+
+```sql
+CREATE ROLE kursovoi_user WITH LOGIN PASSWORD 'пароль' CREATEDB;
+CREATE DATABASE kursovoi OWNER kursovoi_user ENCODING 'UTF8';
+```
+
+Выполнять их вместе нельзя: pgAdmin оборачивает выделенный текст в транзакцию,
+а `CREATE DATABASE` внутри транзакции запрещён — откатится и роль тоже.
+Право `CREATEDB` нужно тестам: Django создаёт временную базу `test_kursovoi`.
+
+**2. Заполнить `.env`.**
 
 ```
 copy .env.example .env
 venv\Scripts\python.exe -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
-:: полученный ключ вписать в .env в переменную SECRET_KEY
+:: полученный ключ вписать в SECRET_KEY, пароль роли — в DB_PASSWORD
+```
 
+**3. Развернуть схему и каталог.**
+
+```
 venv\Scripts\python.exe manage.py migrate
 venv\Scripts\python.exe manage.py loaddata catalog.json
+venv\Scripts\python.exe manage.py createsuperuser
 ```
 
 Без `.env` проект намеренно падает с ошибкой `SECRET_KEY not found`: запасного
@@ -62,6 +80,10 @@ venv\Scripts\python.exe manage.py loaddata catalog.json
 set PYTHONIOENCODING=utf-8
 venv\Scripts\python.exe manage.py dumpdata catalog --indent 2 > catalog\fixtures\catalog.json
 ```
+
+Та же ловушка с кодировкой: `curl` в Git Bash отправляет кириллицу в запросе
+не в UTF-8, из-за чего поиск «ничего не находит». Проверять поиск нужно из
+Python (`urllib`) или в браузере, а не через `curl`.
 
 ## Правила работы (важно)
 
@@ -100,7 +122,7 @@ venv\Scripts\python.exe manage.py dumpdata catalog --indent 2 > catalog\fixtures
 
 **Этап 1 — Технический долг.**
 ~~`.gitignore`~~, ~~`.env` + вынос секретов (python-decouple)~~, ~~`requirements.txt`~~,
-`README.md`. Миграция SQLite → PostgreSQL. ~~Первые тесты~~ (было 12, стало 15).
+`README.md`. ~~Миграция SQLite → PostgreSQL~~. ~~Первые тесты~~ (было 12, стало 15).
 Логирование.
 
 Старый `SECRET_KEY` лежал открытым текстом в `config/settings.py` и попал в публичную
