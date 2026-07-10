@@ -1,9 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
-
 from catalog.models import Product
-
 from .cart import SessionCart
-
+from django.contrib import messages
 
 def cart_detail(request):
     cart = SessionCart(request)
@@ -44,3 +42,14 @@ def cart_clear(request):
     if request.method == 'POST':
         SessionCart(request).clear()
     return redirect('cart_detail')
+
+def cart_detail(request):
+    cart = SessionCart(request)
+    removed = cart.remove_unavailable(request)
+    if removed:
+        for name in removed:
+            messages.warning(
+                request,
+                f'Товар «{name}» был удалён из корзины, так как стал недоступен.'
+            )
+    return render(request, 'cart/cart.html', {'cart': cart})

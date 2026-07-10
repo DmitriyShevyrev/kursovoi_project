@@ -1,10 +1,8 @@
 from decimal import Decimal
-
 from catalog.models import Product
 
-
 class SessionCart:
-    """Корзина на основе Django-сессий (работает для всех пользователей)"""
+    """Корзина на основе Django-сессий"""
 
     def __init__(self, request):
         self.session = request.session
@@ -12,6 +10,28 @@ class SessionCart:
         if not cart:
             cart = self.session['cart'] = {}
         self.cart = cart
+
+    def remove_unavailable(self, request=None):
+        """Удаляет недоступные товары, возвращает список их названий."""
+        product_ids = list(self.cart.keys())
+        if not product_ids:
+            return []
+        available_ids = {
+            str(p.id)
+            for p in Product.objects.filter(id__in=product_ids, available=True)
+        }
+        removed_names = []
+        for pid in list(self.cart.keys()):
+            if pid not in available_ids:
+                try:
+                    product = Product.objects.get(id=int(pid))
+                    removed_names.append(product.name)
+                except Product.DoesNotExist:
+                    removed_names.append('Товар удалён')
+                del self.cart[pid]
+        if removed_names:
+            self.save()
+        return removed_names
 
     def add(self, product, quantity=1):
         product_id = str(product.id)
