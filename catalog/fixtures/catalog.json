@@ -1,0 +1,822 @@
+[
+{
+  "model": "catalog.category",
+  "pk": 1,
+  "fields": {
+    "name": "Строительство и ремонт",
+    "slug": "stroitelstvo-i-remont"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 2,
+  "fields": {
+    "name": "Дом и сад",
+    "slug": "dom-i-sad"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 3,
+  "fields": {
+    "name": "Электроника",
+    "slug": "elektronika"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 4,
+  "fields": {
+    "name": "Одежда",
+    "slug": "odezhda"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 5,
+  "fields": {
+    "name": "Красота и здоровье",
+    "slug": "krasota-i-zdorove"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Дрель-шуруповёрт",
+    "slug": "drel-shurupovyort",
+    "description": "Аккумуляторная дрель-шуруповёрт 18В, крутящий момент 65 Нм, 2 скорости, патрон 13 мм, в комплекте 2 аккумулятора и зарядное устройство. Подходит для сверления дерева, металла, пластика и завинчивания шурупов.",
+    "price": "8990.00",
+    "image": "products/8632012535_u4GV7bq.webp",
+    "available": true,
+    "created": "2026-05-14T19:41:17.631Z",
+    "updated": "2026-05-14T19:41:17.631Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "name": "Перфоратор Makita",
+    "slug": "perforator-makita",
+    "description": "Электрический перфоратор 780 Вт, энергия удара 2.7 Дж, 3 режима работы (сверление, долбление, сверление с ударом), патрон SDS-plus. Для бетона, кирпича и камня.",
+    "price": "12500.00",
+    "image": "products/8728516285_TywH8EQ.webp",
+    "available": true,
+    "created": "2026-05-14T19:42:34.211Z",
+    "updated": "2026-05-14T19:42:34.211Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "name": "Шпаклёвка финишная",
+    "slug": "shpaklyovka-finishnaya",
+    "description": "Гипсовая финишная шпаклёвка для внутренних работ. Толщина слоя 1–3 мм, время высыхания 3 часа. Даёт идеально гладкую поверхность перед покраской или поклейкой обоев.",
+    "price": "1250.00",
+    "image": "products/7851278811_kRlJjMR.webp",
+    "available": true,
+    "created": "2026-05-14T19:43:55.517Z",
+    "updated": "2026-05-14T19:43:55.517Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "name": "Грунтовка глубокого проникновения",
+    "slug": "gruntovka-glubokogo-proniknoveniya",
+    "description": "Укрепляет рыхлые и пористые поверхности, улучшает адгезию. Подходит для бетона, газобетона, кирпича. Расход 100–150 мл/м², морозостойкая",
+    "price": "890.00",
+    "image": "products/9845615823_3VkmYhm.webp",
+    "available": true,
+    "created": "2026-05-14T19:44:52.204Z",
+    "updated": "2026-05-14T19:44:52.204Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "name": "Краска интерьерная белая",
+    "slug": "kraska-interernaya-belaya",
+    "description": "Моющаяся латексная краска для стен и потолков. Укрывистость класс 1, устойчива к влажной уборке. Без запаха, подходит для спален и детских комнат.",
+    "price": "3400.00",
+    "image": "products/7742675500_RNJ8cJm.webp",
+    "available": true,
+    "created": "2026-05-14T19:46:13.202Z",
+    "updated": "2026-05-14T19:46:13.202Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 6,
+  "fields": {
+    "category": 1,
+    "name": "Ламинат Tarkett Estetica Дуб Селект 33 класс",
+    "slug": "laminat-tarkett-estetica-dub-selekt-33-klass",
+    "description": "Ламинат толщиной 9 мм, 33 класс износостойкости, замок T-loc. Подходит для жилых помещений с высокой нагрузкой. Упаковка 1.742 м², имитация натурального дуба.",
+    "price": "1890.00",
+    "image": "products/9999824366_xWtrRe0.webp",
+    "available": true,
+    "created": "2026-05-14T19:47:42.037Z",
+    "updated": "2026-05-14T19:47:42.037Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 7,
+  "fields": {
+    "category": 1,
+    "name": "Монтажная пена Makroflex Premium",
+    "slug": "montazhnaya-pena-makroflex-premium",
+    "description": "Профессиональная однокомпонентная пена с расширением 40 л. Для заполнения швов, щелей, монтажа окон и дверей. Температура применения от −10 до +35°C.",
+    "price": "490.00",
+    "image": "products/7447553989_9Lcdbbg.webp",
+    "available": true,
+    "created": "2026-05-14T19:48:40.473Z",
+    "updated": "2026-05-14T19:48:40.473Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 8,
+  "fields": {
+    "category": 1,
+    "name": "Уровень лазерный ADA Cube 3D",
+    "slug": "uroven-lazernyj-ada-cube-3d",
+    "description": "Самовыравнивающийся лазерный уровень, проецирует 3 плоскости (горизонталь + 2 вертикали). Точность ±0.3 мм/м, дальность 20 м. Незаменим при укладке плитки и монтаже перегородок.",
+    "price": "6700.00",
+    "image": "products/10271874993_cTfGItg.webp",
+    "available": true,
+    "created": "2026-05-14T19:49:38.310Z",
+    "updated": "2026-05-14T19:49:38.310Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 9,
+  "fields": {
+    "category": 1,
+    "name": "Плиточный клей Unis Плюс 25 кг",
+    "slug": "plitochnyj-klej-unis-plyus-25-kg",
+    "description": "Цементный клей для керамической плитки и керамогранита на пол и стены. Время открытой выдержки 20 минут, морозостойкий. Расход 4–6 кг/м² при слое 6 мм",
+    "price": "780.00",
+    "image": "products/7517482624_GrODq8H.webp",
+    "available": true,
+    "created": "2026-05-14T19:50:34.776Z",
+    "updated": "2026-05-14T19:50:34.776Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 10,
+  "fields": {
+    "category": 1,
+    "name": "Рулетка Stanley FatMax 8 м",
+    "slug": "ruletka-stanley-fatmax-8-m",
+    "description": "Профессиональная рулетка с шириной ленты 32 мм, покрытие Mylar. Вылет ленты без поддержки 3 м, автостоп, удароустойчивый корпус.",
+    "price": "1290.00",
+    "image": "products/9111903129_Ts8bL6K.webp",
+    "available": true,
+    "created": "2026-05-14T19:51:36.052Z",
+    "updated": "2026-05-14T19:51:36.052Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 11,
+  "fields": {
+    "category": 1,
+    "name": "Шпатели для затирки швов плитки и для герметика, резиновые, набор 3 шт 40/60/80 мм",
+    "slug": "shpateli-dlya-zatirki-shvov-plitki-i-dlya-germetika-rezinovye-nabor-3-sht-406080-mm",
+    "description": "Забудьте о неудобных и царапающих поверхность инструментах! Этот набор из трех резиновых шпателей — готовое решение для широкого спектра ремонтных и творческих задач.\r\n\r\nИдеальный набор для деликатных и точных работ! Три шпателя разного размера в одном наборе помогут вам в любых задачах: от затирки швов плитки до нанесения герметика и творческих проектов.\r\n\r\nПочему именно этот набор?\r\n\r\n· Всё необходимое в одном наборе: Большим шпателем (80 мм) удобно замешивать и наносить составы на большие площади, средний (60 мм) идеален для основных работ, а маленький (40 мм) поможет в самых тонких и ювелирных местах.\r\n\r\n· Бережный контакт: Резиновая рабочая часть гарантирует, что вы не повредите хрупкую плитку, стекло или деликатную поверхность мебели при заделке швов. Мягкий резиновый наконечник повторяет неровности поверхности и не оставляет царапин.\r\n\r\n· Легко очищать: Материал инертен к большинству строительных смесей, шпатель легко отмывается после работы.\r\n\r\n· Эргономичная ручка: Удобно лежит в руке, не проскальзывает и не натирает даже при длительной работе.\r\n\r\nИдеально подходит для:\r\n\r\n· Затирки межплиточных швов\r\n\r\n· Заделки стыков и нанесения герметика (например, вокруг ванны или раковины)\r\n\r\n· Шпаклевочных работ в углах и на изогнутых поверхностях\r\n\r\n· Лепки из глины, пластилина, эпоксидной смолы\r\n\r\n· Нанесения клея при укладке мозаики",
+    "price": "98.00",
+    "image": "products/1_U7b08MO.1_слайд.PNG",
+    "available": true,
+    "created": "2026-05-14T19:53:37.172Z",
+    "updated": "2026-05-14T19:53:37.172Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 12,
+  "fields": {
+    "category": 1,
+    "name": "Обойный шпатель",
+    "slug": "obojnyj-shpatel",
+    "description": "Шпатель обойный прижимной длиной 280 мм – незаменимый инструмент для любой работы с обоями. Он предназначен для качественного приклеивания обоев, позволяя добиться идеальной гладкости и равномерного прилегания к стене. Специально разработанная форма и размер делают его удобным в использовании, а прочные материалы обеспечивают долговечность эксплуатации.\r\n\r\nЭтот шпатель подходит как для новичков в ремонте, так и для профессионалов, стремящихся к высокому качеству выполненной работы. С его помощью легко устраняются пузырьки воздуха и складки, а также обеспечивается аккуратное и безопасное нанесение обоев. Его эргономичная рукоятка гарантирует комфортный захват, позволяя работать продолжительное время без усталости.\r\n\r\nПрижимной шпатель отлично справляется с различными типами обоев, в том числе виниловыми и флизелиновыми, что делает его универсальным инструментом для всех видов отделки. Благодаря оптимальному размеру он позволяет работать как в тесных помещениях, так и на больших площадях.\r\n\r\nВыбирая шпатель обойный прижимной 280 мм, вы делаете шаг к качественному и профессиональному ремонту. Не упустите возможность облегчить себе процесс оклейки стен и создайте идеальный интерьер вашего дома или офиса.",
+    "price": "157.00",
+    "image": "products/Слайд_1_zqmeicb.PNG",
+    "available": true,
+    "created": "2026-05-14T19:54:36.741Z",
+    "updated": "2026-05-14T19:54:36.741Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 13,
+  "fields": {
+    "category": 2,
+    "name": "Газонокосилка Bosch",
+    "slug": "gazonokosilka-bosch",
+    "description": "Электрическая газонокосилка 1800 Вт, ширина скашивания 43 см, высота среза 20–70 мм (6 позиций). Травосборник 50 л, складная рукоятка для компактного хранения. Для газонов до 800 м².",
+    "price": "14500.00",
+    "image": "products/9872428084_Tm0M4Aj.webp",
+    "available": true,
+    "created": "2026-05-14T19:56:43.207Z",
+    "updated": "2026-05-14T19:56:43.207Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 14,
+  "fields": {
+    "category": 2,
+    "name": "Садовые ножницы",
+    "slug": "sadovye-nozhnicy",
+    "description": "Сучкорез с механизмом усиления реза PowerGear — требует на 30% меньше усилий. Режущая способность ветки до 24 мм, лезвие из закалённой стали, антиадгезионное покрытие.",
+    "price": "3200.00",
+    "image": "products/8668258600_32Ziq5V.webp",
+    "available": true,
+    "created": "2026-05-14T19:57:48.403Z",
+    "updated": "2026-05-14T19:57:48.403Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 15,
+  "fields": {
+    "category": 2,
+    "name": "Шланг садовый Gardena",
+    "slug": "shlang-sadovyj-gardena",
+    "description": "Армированный шланг из термопластичной резины, рабочее давление до 25 бар. Морозостойкий до −20°C, не перекручивается. В комплекте коннекторы для быстрого подключения.",
+    "price": "2890.00",
+    "image": "products/6951081911.webp",
+    "available": true,
+    "created": "2026-05-14T20:01:57.471Z",
+    "updated": "2026-05-14T20:01:57.471Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 16,
+  "fields": {
+    "category": 2,
+    "name": "Горшок кашпо уличное",
+    "slug": "gorshok-kashpo-ulichnoe",
+    "description": "Вместительное пластиковое кашпо с поддоном и дренажными отверстиями. Устойчиво к УФ-излучению, морозостойкое. Подходит для крупных кустарников и деревьев в контейнерах.",
+    "price": "1190.00",
+    "image": "products/9573699626.webp",
+    "available": true,
+    "created": "2026-05-14T20:02:54.073Z",
+    "updated": "2026-05-14T20:02:54.073Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 17,
+  "fields": {
+    "category": 2,
+    "name": "Удобрение Fertika",
+    "slug": "udobrenie-fertika",
+    "description": "Комплексное минеральное удобрение NPK с микроэлементами. Подходит для овощей, цветов, кустарников и деревьев. Пролонгированное действие до 6 недель, не обжигает корни.",
+    "price": "450.00",
+    "image": "products/10466134736.webp",
+    "available": true,
+    "created": "2026-05-14T20:03:43.494Z",
+    "updated": "2026-05-14T20:03:43.494Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 18,
+  "fields": {
+    "category": 2,
+    "name": "Садовый опрыскиватель",
+    "slug": "sadovyj-opryskivatel",
+    "description": "Ранцевый опрыскиватель с помпой давления, шланг 1.2 м, регулируемое сопло (туман/струя). Для обработки растений удобрениями и средствами защиты. Эргономичные лямки.",
+    "price": "2100.00",
+    "image": "products/6747231734.webp",
+    "available": true,
+    "created": "2026-05-14T20:04:42.339Z",
+    "updated": "2026-05-14T20:04:42.339Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 19,
+  "fields": {
+    "category": 2,
+    "name": "Компостер Garantia",
+    "slug": "komposter-garantia",
+    "description": "Термокомпостер из переработанного пластика для круглогодичного использования. Двойные стенки сохраняют тепло зимой, ускоряя разложение. Крышка с вентиляцией, нижний люк для выгрузки",
+    "price": "5800.00",
+    "image": "products/7469832830.webp",
+    "available": true,
+    "created": "2026-05-14T20:05:33.262Z",
+    "updated": "2026-05-14T20:05:33.262Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 20,
+  "fields": {
+    "category": 2,
+    "name": "Светильник садовый на солнечной батарее",
+    "slug": "svetilnik-sadovyj-na-solnechnoj-bataree",
+    "description": "Декоративный фонарь для дорожек, IP44, заряжается за 6–8 часов, работает до 10 часов. Автовключение в темноте, нержавеющий корпус, высота 35 см. Комплект 4 штуки.",
+    "price": "1600.00",
+    "image": "products/10157463516.webp",
+    "available": true,
+    "created": "2026-05-14T20:06:23.462Z",
+    "updated": "2026-05-14T20:06:23.462Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 21,
+  "fields": {
+    "category": 2,
+    "name": "Мойка высокого давления Karcher",
+    "slug": "mojka-vysokogo-davleniya-karcher",
+    "description": "Электрическая мойка 145 бар, 500 л/ч. Для мытья автомобилей, фасадов, садовой мебели и дорожек. Пистолет с регулировкой давления, плоскоструйная и роторная насадки в комплекте.",
+    "price": "18900.00",
+    "image": "products/9066211249.webp",
+    "available": true,
+    "created": "2026-05-14T20:07:58.017Z",
+    "updated": "2026-05-14T20:07:58.017Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 22,
+  "fields": {
+    "category": 2,
+    "name": "Гамак тканевый с креплениями",
+    "slug": "gamak-tkanevyj-s-krepleniyami",
+    "description": "Хлопковый гамак 200×80 см, нагрузка до 150 кг. В комплекте стропы и S-образные карабины для крепления к деревьям. Яркий полосатый дизайн, складывается в мешочек.",
+    "price": "1350.00",
+    "image": "products/9893812013.webp",
+    "available": true,
+    "created": "2026-05-14T20:09:03.824Z",
+    "updated": "2026-05-14T20:09:03.824Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 23,
+  "fields": {
+    "category": 3,
+    "name": "Смартфон Samsung Galaxy A55 8/256 ГБ",
+    "slug": "smartfon-samsung-galaxy-a55-8256-gb",
+    "description": "6.6\" Super AMOLED дисплей 120 Гц, процессор Exynos 1480, тройная камера 50+12+5 МП, аккумулятор 5000 мАч, быстрая зарядка 25 Вт, защита IP67. Android 14.",
+    "price": "34900.00",
+    "image": "products/7096043404.webp",
+    "available": true,
+    "created": "2026-05-14T20:11:42.900Z",
+    "updated": "2026-05-14T20:11:42.900Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 24,
+  "fields": {
+    "category": 3,
+    "name": "Ноутбук Lenovo IdeaPad 5 15.6\"",
+    "slug": "noutbuk-lenovo-ideapad-5-156",
+    "description": "Intel Core i5-1235U, 16 ГБ RAM, SSD 512 ГБ, дисплей IPS 1920×1080, Intel Iris Xe Graphics, аккумулятор 57 Вт·ч, время работы до 12 часов. Windows 11.",
+    "price": "62500.00",
+    "image": "products/9046971597.webp",
+    "available": true,
+    "created": "2026-05-14T20:12:40.194Z",
+    "updated": "2026-05-14T20:12:40.194Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 25,
+  "fields": {
+    "category": 3,
+    "name": "Беспроводные наушники Sony WH-1000XM5",
+    "slug": "besprovodnye-naushniki-sony-wh-1000xm5",
+    "description": "Накладные наушники с активным шумоподавлением, 8 микрофонов, 30 часов работы без подзарядки, Bluetooth 5.2, быстрая зарядка (10 мин = 5 часов). Складная конструкция.",
+    "price": "27990.00",
+    "image": "products/8052045566.webp",
+    "available": true,
+    "created": "2026-05-14T20:13:38.221Z",
+    "updated": "2026-05-14T20:13:38.221Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 26,
+  "fields": {
+    "category": 3,
+    "name": "Планшет Xiaomi Pad 6 8/256 ГБ",
+    "slug": "planshet-xiaomi-pad-6-8256-gb",
+    "description": "11\" дисплей 2880×1800 144 Гц, Snapdragon 870, аккумулятор 8840 мАч, зарядка 33 Вт, 4 динамика Dolby Atmos, поддержка стилуса. MIUI 14.",
+    "price": "29990.00",
+    "image": "products/9152125995.webp",
+    "available": true,
+    "created": "2026-05-14T20:14:27.905Z",
+    "updated": "2026-05-14T20:14:27.905Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 27,
+  "fields": {
+    "category": 3,
+    "name": "Умная колонка Яндекс Станция Макс",
+    "slug": "umnaya-kolonka-yandeks-stanciya-maks",
+    "description": "Голосовой помощник Алиса, мощность 65 Вт, Zigbee-хаб для умного дома, HDMI-выход для подключения к ТВ, Wi-Fi 6, поддержка Яндекс Музыки и стриминговых сервисов.",
+    "price": "19990.00",
+    "image": "products/7978651700.webp",
+    "available": true,
+    "created": "2026-05-14T20:15:15.617Z",
+    "updated": "2026-05-14T20:15:15.617Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 28,
+  "fields": {
+    "category": 3,
+    "name": "Робот-пылесос Dreame",
+    "slug": "robot-pylesos-dreame",
+    "description": "Мощность всасывания 4000 Па, база для автоопустошения мешок 2.5 л, лазерная навигация LiDAR, влажная уборка, составление карты помещения, управление через приложение.",
+    "price": "32900.00",
+    "image": "products/9055378114.webp",
+    "available": true,
+    "created": "2026-05-14T20:16:04.722Z",
+    "updated": "2026-05-14T20:16:04.722Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 29,
+  "fields": {
+    "category": 3,
+    "name": "Телевизор LG 55\"",
+    "slug": "televizor-lg-55",
+    "description": "OLED-панель 4K 120 Гц, процессор α9 Gen6 AI, Dolby Vision IQ, Dolby Atmos, HDMI 2.1 × 4, поддержка игрового режима VRR и G-Sync. webOS 23.",
+    "price": "89990.00",
+    "image": "products/8016089703.webp",
+    "available": true,
+    "created": "2026-05-14T20:17:05.919Z",
+    "updated": "2026-05-14T20:17:05.919Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 30,
+  "fields": {
+    "category": 3,
+    "name": "Фотоаппарат Sony ZV",
+    "slug": "fotoapparat-sony-zv",
+    "description": "Беззеркальная камера 24.2 МП, APS-C матрица, 4K видео, поворотный экран для влогов, микрофонный вход 3.5 мм, Eye-AF для отслеживания лиц, Wi-Fi/Bluetooth.",
+    "price": "54900.00",
+    "image": "products/10132023937.webp",
+    "available": true,
+    "created": "2026-05-14T20:17:55.324Z",
+    "updated": "2026-05-14T20:17:55.324Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 31,
+  "fields": {
+    "category": 3,
+    "name": "Внешний SSD Samsung",
+    "slug": "vneshnij-ssd-samsung",
+    "description": "Скорость чтения 1050 МБ/с, записи 1000 МБ/с, интерфейс USB 3.2 Gen2, защита паролем AES 256-бит, ударостойкий корпус (падение до 3 м), весит 58 г.",
+    "price": "8490.00",
+    "image": "products/9616750262.webp",
+    "available": false,
+    "created": "2026-05-14T20:18:40.947Z",
+    "updated": "2026-05-18T08:42:46.261Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 32,
+  "fields": {
+    "category": 3,
+    "name": "Умные часы Garmin",
+    "slug": "umnye-chasy-garmin",
+    "description": "AMOLED-дисплей 1.4\", встроенный GPS, пульсоксиметр, мониторинг сна, 25+ спортивных режимов, NFC-оплата, аккумулятор до 14 дней, водозащита 5 ATM.",
+    "price": "42990.00",
+    "image": "products/8613225532.webp",
+    "available": true,
+    "created": "2026-05-14T20:19:46.536Z",
+    "updated": "2026-05-14T20:19:46.536Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 33,
+  "fields": {
+    "category": 4,
+    "name": "Куртка зимняя мужская Columbia",
+    "slug": "kurtka-zimnyaya-muzhskaya-columbia",
+    "description": "Пуховик с утеплителем Omni-Heat 550 fill, ветро- и влагозащитная внешняя ткань, капюшон с регулировкой, карманы на молнии. Температурный режим до −20°C. Размеры S–3XL.",
+    "price": "12900.00",
+    "image": "products/8180839646.webp",
+    "available": true,
+    "created": "2026-05-14T20:22:01.476Z",
+    "updated": "2026-05-14T20:22:01.476Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 34,
+  "fields": {
+    "category": 4,
+    "name": "Джинсы Levi's 501",
+    "slug": "dzhinsy-levis-501",
+    "description": "Классические прямые джинсы из 100% хлопкового денима плотностью 12 унций. Пуговичная застёжка, 5 карманов, усиленные швы. Доступны в синем, чёрном и сером.",
+    "price": "7490.00",
+    "image": "products/7954438423.jpg",
+    "available": true,
+    "created": "2026-05-14T20:23:34.496Z",
+    "updated": "2026-05-14T20:23:34.496Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 35,
+  "fields": {
+    "category": 4,
+    "name": "Платье женское Tommy Hilfiger",
+    "slug": "plate-zhenskoe-tommy-hilfiger",
+    "description": "Платье-миди с запахом из вискозного крепа, V-образный вырез, пояс-завязка, рукав 3/4. Принт в тонкую полоску. Подходит для офиса и повседневного образа.",
+    "price": "9200.00",
+    "image": "products/9135394385.webp",
+    "available": true,
+    "created": "2026-05-14T20:24:29.334Z",
+    "updated": "2026-05-14T20:24:29.334Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 36,
+  "fields": {
+    "category": 4,
+    "name": "Кроссовки Nike Air Max",
+    "slug": "krossovki-nike-air-max",
+    "description": "Подошва с воздушной камерой Max Air 270° для максимальной амортизации, сетчатый верх с накладками, резиновая подошва с зонами сцепления. Унисекс, размеры 36–47.",
+    "price": "11490.00",
+    "image": "products/9533595586.webp",
+    "available": true,
+    "created": "2026-05-14T20:25:49.248Z",
+    "updated": "2026-05-14T20:25:49.248Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 37,
+  "fields": {
+    "category": 4,
+    "name": "Толстовка-худи Adidas",
+    "slug": "tolstovka-hudi-adidas",
+    "description": "Флисовая толстовка из 70% хлопка и 30% полиэстера, капюшон с кулиской, карман-кенгуру, рибана на манжетах и поясе. Логотип вышивкой. Мужская и женская версии.",
+    "price": "4990.00",
+    "image": "products/7896548895.webp",
+    "available": true,
+    "created": "2026-05-14T20:26:50.700Z",
+    "updated": "2026-05-14T20:26:50.700Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 38,
+  "fields": {
+    "category": 4,
+    "name": "Деловой костюм мужской Zara",
+    "slug": "delovoj-kostyum-muzhskoj-zara",
+    "description": "Пиджак и брюки из смесовой шерсти 60/40, приталенный крой Slim Fit, внутренние карманы, пуговицы из кокосового ореха. Цвета: тёмно-синий, антрацит, бежевый.",
+    "price": "18900.00",
+    "image": "products/7971294626.webp",
+    "available": true,
+    "created": "2026-05-14T20:28:54.361Z",
+    "updated": "2026-05-14T20:28:54.361Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 39,
+  "fields": {
+    "category": 4,
+    "name": "Спортивные леггинсы женские Under Armour",
+    "slug": "sportivnye-legginsy-zhenskie-under-armour",
+    "description": "Компрессионные леггинсы из ткани HeatGear для отвода влаги, плоские швы без натирания, широкий пояс с внутренним кармашком. UPF 30+. Длина 7/8.",
+    "price": "5600.00",
+    "image": "products/10243779129.webp",
+    "available": true,
+    "created": "2026-05-14T20:29:57.327Z",
+    "updated": "2026-05-14T20:29:57.327Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 40,
+  "fields": {
+    "category": 4,
+    "name": "Пальто женское классическое Massimo",
+    "slug": "palto-zhenskoe-klassicheskoe-massimo",
+    "description": "Двубортное пальто длиной до колена из шерсти 80% и кашемира 20%. Отложной воротник, прорезные карманы, атласная подкладка. Цвета: кэмел, чёрный, серый меланж.",
+    "price": "24500.00",
+    "image": "products/8467322011.webp",
+    "available": true,
+    "created": "2026-05-14T20:31:06.855Z",
+    "updated": "2026-05-14T20:31:06.855Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 41,
+  "fields": {
+    "category": 4,
+    "name": "Футболка поло мужская Ralph Lauren",
+    "slug": "futbolka-polo-muzhskaya-ralph-lauren",
+    "description": "100% хлопок пике, классический крой, двупуговичная планка, рёберная вязка на воротнике и манжетах, вышитый логотип-пони. 12 цветов на выбор.",
+    "price": "6990.00",
+    "image": "products/10349898086.webp",
+    "available": true,
+    "created": "2026-05-14T20:32:04.627Z",
+    "updated": "2026-05-14T20:32:04.627Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 42,
+  "fields": {
+    "category": 4,
+    "name": "Зимние ботинки Dr. Martens",
+    "slug": "zimnie-botinki-dr-martens",
+    "description": "8-дырочные ботинки из натуральной кожи с утеплителем, подошва AirWair с антиусталостным слоем, жёлтая контрастная прошивка, молния сбоку для удобства надевания.",
+    "price": "16800.00",
+    "image": "products/7206292480.webp",
+    "available": true,
+    "created": "2026-05-14T20:33:07.918Z",
+    "updated": "2026-05-14T20:33:07.918Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 43,
+  "fields": {
+    "category": 5,
+    "name": "Электрическая зубная щётка Oral-B",
+    "slug": "elektricheskaya-zubnaya-shyotka-oral-b",
+    "description": "3 режима чистки (чистка, отбеливание, массаж дёсен), таймер 2 минуты с интервальным сигналом каждые 30 секунд, давление-контроль, аккумулятор на 3 недели. В комплекте 2 насадки.",
+    "price": "4990.00",
+    "image": "products/7756797756.webp",
+    "available": true,
+    "created": "2026-05-14T20:34:56.082Z",
+    "updated": "2026-05-14T20:34:56.082Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 44,
+  "fields": {
+    "category": 5,
+    "name": "Крем для лица Vichy Liftactiv",
+    "slug": "krem-dlya-lica-vichy-liftactiv",
+    "description": "Антивозрастной крем с гиалуроновой кислотой, ниацинамидом и витамином С. Подтягивает кожу, уменьшает морщины за 4 недели. Для нормальной и комбинированной кожи. Протестирован дерматологами",
+    "price": "3200.00",
+    "image": "products/10158324895.webp",
+    "available": true,
+    "created": "2026-05-14T20:36:03.739Z",
+    "updated": "2026-05-14T20:36:03.739Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 45,
+  "fields": {
+    "category": 5,
+    "name": "Фен Dyson Supersonic",
+    "slug": "fen-dyson-supersonic",
+    "description": "Мощность 1600 Вт, интеллектуальный контроль температуры (измерение 40 раз/сек), 3 скорости и 4 температурных режима, магнитные насадки. Защита от перегрева, шнур 1.9 м.",
+    "price": "34990.00",
+    "image": "products/8308829248.webp",
+    "available": true,
+    "created": "2026-05-14T20:37:08.986Z",
+    "updated": "2026-05-14T20:37:08.986Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 46,
+  "fields": {
+    "category": 5,
+    "name": "Сыворотка для волос L'Oréal Elseve",
+    "slug": "syvorotka-dlya-volos-loreal-elseve",
+    "description": "Масло из 6 редких цветочных масел (камелия, роза, лотос), восстанавливает структуру волоса, придаёт блеск и шёлковистость. Без смывания, 100 мл. Подходит для сухих и повреждённых волос.",
+    "price": "890.00",
+    "image": "products/9205164432.webp",
+    "available": true,
+    "created": "2026-05-14T20:38:04.717Z",
+    "updated": "2026-05-14T20:38:04.717Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 47,
+  "fields": {
+    "category": 5,
+    "name": "Массажёр для лица Foreo",
+    "slug": "massazhyor-dlya-lica-foreo",
+    "description": "Силиконовый звуковой массажёр с T-Sonic технологией (8000 пульсаций/мин), 16 интенсивностей, режим антивозрастного массажа. Водонепроницаемый IPX7, заряд на 650 процедур.",
+    "price": "12900.00",
+    "image": "products/6968912416.webp",
+    "available": true,
+    "created": "2026-05-14T20:39:01.123Z",
+    "updated": "2026-05-14T20:39:01.123Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 48,
+  "fields": {
+    "category": 5,
+    "name": "Парфюмерная вода Chanel Chance",
+    "slug": "parfyumernaya-voda-chanel-chance",
+    "description": "Свежий цветочный аромат с нотами грейпфрута, жасмина и белого мускуса. Стойкость 6–8 часов, шлейф умеренный. Флакон из тяжёлого стекла с фирменным колпачком.",
+    "price": "14500.00",
+    "image": "products/10174413028.webp",
+    "available": true,
+    "created": "2026-05-14T20:40:02.355Z",
+    "updated": "2026-05-14T20:40:02.355Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 49,
+  "fields": {
+    "category": 5,
+    "name": "Витаминный комплекс Solgar Омега-3",
+    "slug": "vitaminnyj-kompleks-solgar-omega-3",
+    "description": "Рыбий жир высокой степени очистки, 1200 мг ЭПК+ДГК на порцию. Поддерживает сердце, мозг и суставы. Без ртути, без искусственных добавок. Курс на 2 месяца.",
+    "price": "2490.00",
+    "image": "products/10138278893.webp",
+    "available": true,
+    "created": "2026-05-14T20:41:49.753Z",
+    "updated": "2026-05-14T20:41:49.753Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 50,
+  "fields": {
+    "category": 5,
+    "name": "Электробритва Braun",
+    "slug": "elektrobritva-braun",
+    "description": "5 режущих элементов, технология SyncroSonic 40 000 микровибраций/мин, адаптивное давление, триммер для бороды, станция AutoSense для чистки и зарядки. Водонепроницаемая IPX7.",
+    "price": "24900.00",
+    "image": "products/8246490556.webp",
+    "available": true,
+    "created": "2026-05-14T20:42:44.456Z",
+    "updated": "2026-05-14T20:42:44.456Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 51,
+  "fields": {
+    "category": 5,
+    "name": "Палетка теней Anastasia Beverly",
+    "slug": "paletka-tenej-anastasia-beverly",
+    "description": "14 оттенков (матовые, шиммерные, глиттерные), высокопигментированные формулы, зеркало внутри. Нейтральные тёплые тона для дневного и вечернего макияжа. Без парабенов.",
+    "price": "4200.00",
+    "image": "products/8355175353.webp",
+    "available": true,
+    "created": "2026-05-14T20:43:35.190Z",
+    "updated": "2026-05-14T20:43:35.190Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 52,
+  "fields": {
+    "category": 5,
+    "name": "Тонометр Omron M3",
+    "slug": "tonometr-omron-m3",
+    "description": "Автоматический тонометр на плечо, манжета 22–42 см, память 60 измерений, индикатор аритмии и движения, индикатор правильного положения. Работает от сети и батареек.",
+    "price": "3800.00",
+    "image": "products/8354160877.webp",
+    "available": true,
+    "created": "2026-05-14T20:44:36.138Z",
+    "updated": "2026-05-14T20:44:36.138Z"
+  }
+}
+]
